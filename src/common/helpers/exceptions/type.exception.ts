@@ -66,4 +66,15 @@ export const TypeExceptions = {
       HttpStatus.INTERNAL_SERVER_ERROR
     );
   },
+
+  alreadyExists(message: string): HttpException {
+    return new HttpException(
+      {
+        message: `One of the ${message} already exists`,
+        error: "Conflict",
+        statusCode: HttpStatus.CONFLICT,
+      },
+      HttpStatus.CONFLICT
+    );
+  },
 };

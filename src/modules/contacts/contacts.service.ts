@@ -58,6 +58,10 @@ export class ContactsService {
       return contact[0];
     } catch (error) {
       this.myLogger.error("Failed to create contact", error);
+      if (error.code === 11000) {
+        throw TypeExceptions.alreadyExists("email addresses or phone numbers");
+      }
+
       throw TypeExceptions.UnknownError(error.message);
     }
   }
